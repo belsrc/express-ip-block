@@ -11,9 +11,9 @@ Small simple IP blocker for Connect/Express.
 ##### ips: Array - An array of IP addresses to white or black list.
 
 ##### options: Object - Module options.
-* allow: Boolean - If true, treats passed IP(s) as whitelisted. Otherwise, treats them as blacklisted. Default is true.
+* ```allow```: Boolean - If true, treats passed IP(s) as whitelisted. Otherwise, treats them as blacklisted. Default is true.
 
-* allowForwarded: Boolean - If true, checks various forwarded-for headers for an IP. Default is false.
+* ```allowForwarded```: Boolean - If true, checks various forwarded-for headers for an IP. Default is false.
 
 ### Example
 ```javascript
