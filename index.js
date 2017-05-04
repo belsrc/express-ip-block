@@ -1,6 +1,30 @@
 'use strict';
 
 /**
+ * Checks if the given IP conforms to IPv4.
+ * @private
+ * @param  {String}  ip The IP address.
+ * @return {Boolean}
+ */
+function isIPv4(ip) {
+  const regex = /^(\d{1,3}\.){3,3}\d{1,3}(\:\d+)?$/;
+
+  return regex.test(ip);
+}
+
+/**
+ * Checks if the given IP conforms to IPv6.
+ * @private
+ * @param  {String}  ip The IP address.
+ * @return {Boolean}
+ */
+function isIPv6(ip) {
+  const regex = /^(::)?(((\d{1,3}\.){3}(\d{1,3}){1})?([0-9a-f]){0,4}:{0,2}){1,8}(::)?$/i;
+
+  return regex.test(ip);
+}
+
+/**
  * Loops through the given checks and returns the first truthy value.
  * @private
  * @param  {Array}  checks  The list of ip checks.
@@ -67,7 +91,7 @@ function getIp(request, allowForwarded) {
     checks = forwardChecks.concat(checks);
   }
 
-  let remoteIPs = getFirstIp(checks);
+  const remoteIPs = getFirstIp(checks);
 
   if(!remoteIPs) {
     return null;
@@ -75,10 +99,15 @@ function getIp(request, allowForwarded) {
 
   let ip = remoteIPs.split(',')[0];
 
+  // Remove ::ffff if there
+  if(isIPv6(ip) && ip.indexOf('::ffff') !== -1) {
+    ip = ip.replace('::ffff:');
+  }
+
   // Apparently Azure Gateway (thanks MS) tacks on port number to the forwarded IP [address:port]
   // https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-faq
   // Q: Does Application Gateway support x-forwarded-for headers?
-  if(~ip.indexOf(':')) {
+  if(isIPv4(ip) && ip.indexOf(':') !== -1) {
     ip = ip.split(':')[0];
   }
 
