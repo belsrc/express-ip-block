@@ -101,7 +101,7 @@ function getIp(request, allowForwarded) {
 
   // Remove ::ffff if there
   if(isIPv6(ip) && ip.indexOf('::ffff') !== -1) {
-    ip = ip.replace('::ffff:');
+    ip = ip.replace('::ffff:', '');
   }
 
   // Apparently Azure Gateway (thanks MS) tacks on port number to the forwarded IP [address:port]
