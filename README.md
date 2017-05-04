@@ -18,9 +18,17 @@ Small simple IP blocker for Connect/Express.
 ### Example
 ```javascript
 const ips = require('ips.json');
-const ipBlock = require('express-ip-block')(ips, { allow: false, allowForwarded: true });
+const options = { allow: false, allowForwarded: true };
+const ipBlock = require('express-ip-block')(ips, options);
 
 app.get('/', ipBlock, (request, response, next) => response.render('index'));
+
+// Alternatively
+const ipBlock = require('express-ip-block');
+const ips = ['127.0.0.1'];
+const options = { allowForwarded: true };
+
+app.get('/', ipBlock(ips, options), (request, response, next) => response.render('index'));
 ```
 
 

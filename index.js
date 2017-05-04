@@ -83,8 +83,8 @@ function getIp(request, allowForwarded) {
 module.exports = function(ips, options) {
   options = options || {};
 
-  options.allow = options.allow || true;
-  options.allowForwarded = options.allowForwarded || false;
+  options.allow = options.allow != null ? options.allow : true;
+  options.allowForwarded = options.allowForwarded != null ? options.allowForwarded : false;
 
   return function(request, response, next) {
     // If there are no IPs then there's no point going further
