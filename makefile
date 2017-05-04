@@ -43,25 +43,25 @@ test:
 # Run Plato code analyzer
 analyze:
 	$(ANALYZE_START)
-	node $(PLATO) -r -l .eslintrc -d $(REPORTSDIR) lib
+	node $(PLATO) -r -l .eslintrc -d $(REPORTSDIR) index.js
 	$(ANALYZE_END)
 
 # Run ESLint (Show only errors)
 lint_error:
 	$(LINT_START)
-	node $(ESLINT) -c .eslintrc --color --quiet --global __base --ignore-path .eslintignore "lib/**"
+	node $(ESLINT) -c .eslintrc --color --quiet --ignore-path .eslintignore "index.js"
 	$(LINT_END)
 
 # Run ESLint
 lint:
 	$(LINT_START)
-	node $(ESLINT) -c .eslintrc --color --global __base --ignore-path .eslintignore "lib/**"
+	node $(ESLINT) -c .eslintrc --color --ignore-path .eslintignore "index.js"
 	$(LINT_END)
 
 # Generate code documentation
 docs:
 	$(DOC_START)
-	node $(JSDOC) -r lib --readme README.md --destination $(DOCSDIR) --package package.json
+	node $(JSDOC) -r index.js --readme README.md --destination $(DOCSDIR) --package package.json
 	$(DOC_END)
 
 # Completion message

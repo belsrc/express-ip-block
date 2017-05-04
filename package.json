@@ -1,14 +1,14 @@
 {
-  "name": "@belsrc/squeue",
-  "version": "0.3.1",
+  "name": "express-ip-block",
+  "version": "0.1.0",
   "description": "Small simple ip blocker for connect/express",
   "main": "index.js",
   "scripts": {
     "cov-test": "node node_modules/.bin/istanbul cover --dir=documents/coverage --print=detail node_modules/.bin/_mocha -- -R spec --ui tdd --recursive tests",
     "test": "node node_modules/.bin/mocha --reporter spec --ui tdd --recursive tests",
-    "lint": "node node_modules/.bin/eslint -c .eslintrc --color --quiet --global __base --ignore-path .eslintignore \"lib/**\"",
-    "analyze": "node node_modules/.bin/es6-plato -r -l .eslintrc -d documents/analysis lib",
-    "docs": "node node_modules/.bin/jsdoc -r lib --readme README.md --destination documents/documentation --package package.json"
+    "lint": "node node_modules/.bin/eslint -c .eslintrc --color --quiet --ignore-path .eslintignore \"index.js\"",
+    "analyze": "node node_modules/.bin/es6-plato -r -l .eslintrc -d documents/analysis index.js",
+    "docs": "node node_modules/.bin/jsdoc -r index.js --readme README.md --destination documents/documentation --package package.json"
   },
   "repository": {
     "type": "git",
