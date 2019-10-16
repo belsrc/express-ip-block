@@ -1,4 +1,4 @@
-## Express IP Block [WIP]
+## [UNMAINTAINED] Express IP Block
 
 Small simple IP blocker for Connect/Express.
 
